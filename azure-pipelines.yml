@@ -3,7 +3,7 @@ trigger:
 
 pool:
   name: 'default'
-  vmImage: 'windows-2019'
+  vmImage: 'SHALCHUK-NB'
 
 variables:
   solution: '**/*.sln'
@@ -28,9 +28,9 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
     
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '4d32219b-dc62-4fba-98e9-9ec422654bea/c32e5ea0-6074-442c-80be-6f69f8828b3f'
+# - task: NuGetCommand@2
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: '4d32219b-dc62-4fba-98e9-9ec422654bea/c32e5ea0-6074-442c-80be-6f69f8828b3f'
