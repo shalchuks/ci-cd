@@ -39,8 +39,3 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
     vstsFeed: '4d32219b-dc62-4fba-98e9-9ec422654bea/c32e5ea0-6074-442c-80be-6f69f8828b3f'
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
