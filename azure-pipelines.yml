@@ -2,9 +2,8 @@ trigger:
 - master
 
 pool:
-  # name: 'default'
-  # vmImage: 'SHALCHUK-NB'
-  vmImage: 'VS2017-Win2016'
+  name: 'default'
+  vmImage: 'SHALCHUK-NB'
 
 variables:
   solution: '**/*.sln'
