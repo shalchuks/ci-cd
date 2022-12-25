@@ -18,4 +18,4 @@ jobs:
   - job: A
     steps:
     - script: echo testEmpty is blank
-    condition: eq(parameters.testEmpty, '')
+    - ${{ if eq(parameters.testEmpty, true) }}
