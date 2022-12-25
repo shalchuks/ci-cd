@@ -14,7 +14,6 @@ parameters:
     - 'none'
     - 'one'
     - 'both'
-  default: 'both'
 
 
 jobs:
@@ -24,6 +23,7 @@ jobs:
       name: 'default'
       vmImage: 'SHALCHUK-NB'
   steps:
+
   - script: echo building $(Build.BuildNumber)
   - ${{ if eq(parameters.test, 'none') }}:
 
@@ -31,9 +31,4 @@ jobs:
         displayName: 'Use NuGet 5.9.1'
         inputs:
           versionSpec: 5.9.1
-
-      - task: NuGetCommand@2
-        inputs:
-          command: 'restore'
-          restoreSolution: '**/*.sln'
-          feedsToUse: 'select'
+  - ${{ if eq(parameters.test, 'none') }}:
