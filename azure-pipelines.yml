@@ -1,81 +1,9 @@
-
-name: 
-  2.3.$(Rev:r)
-
-trigger:
-- master
-
-pool:
-  name: 'default'
-  vmImage: 'SHALCHUK-NB'
- 
-parameters:
-
-- name: pipconf
-  type: string
-  default: NuGet or Publish
-  values:
-  - None of the Packages
-  - NuGet or Publish
-  - Both 
-
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  nupkgVersion: $(Build.BuildNumber)
-
+- name: testEmpty
+  value: ''
 
 jobs:
-  - job: Both
-    condition: eq(values.Both, true)
-    displayName: Job B
-    
+  - job: A
     steps:
-    - task: NuGetToolInstaller@0
-      displayName: 'Use NuGet 5.9.1'
-      inputs:
-        versionSpec: 5.9.1
-      condition: 
-
-    - task: NuGetCommand@2
-      inputs:
-        command: 'restore'
-        restoreSolution: '**/*.sln'
-        feedsToUse: 'select'
-        
-
-    - task: VSBuild@1
-      inputs:
-        solution: '**\*.sln'
-        platform: '$(BuildPlatform)'
-        configuration: '$(BuildConfiguration)'
-
-
-
-    - task: NuGetCommand@2
-      inputs:
-        command: 'pack'
-        packagesToPack: '**/*.nuspec'
-        versioningScheme: byEnvVar
-        versionEnvVar: nupkgVersion
-
-
-    - task: NuGetCommand@2
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-        nuGetFeedType: 'internal'
-        publishVstsFeed: 'c35e38d1-be09-4a19-820a-dbfaa929ff00/1c448e02-e13d-4b85-af85-66cffbe1c38a'
-          
-
-    - task: UniversalPackages@0
-      inputs:
-        command: 'publish'
-        publishDirectory: '$(Build.SourcesDirectory)/SharpDocx/bin/Release/netstandard2.0'
-        feedsToUsePublish: 'internal'
-        vstsFeedPublish: 'c35e38d1-be09-4a19-820a-dbfaa929ff00/1c448e02-e13d-4b85-af85-66cffbe1c38a'
-        vstsFeedPackagePublish: 'sharp_docx'
-        versionOption: 'custom'
-        versionPublish: '$(Build.BuildNumber)'
-      
+    - script: echo testEmpty is blank
+    condition: eq(variables.testEmpty, '')
