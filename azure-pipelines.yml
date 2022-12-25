@@ -33,7 +33,7 @@ jobs:
   steps:
 
   - ${{ if eq(parameters.NuGet, 'None of the packages') }}:
-      - script: echo Runnig - None of the packages
+      - bash:  echo 'Runnig - None of the packages'
       
   
 
