@@ -11,10 +11,10 @@ parameters:
   displayName: Pipeline Configuration
   type: string
   values:
-    - none
-    - one
-    - true
-  default: true
+    - 'none'
+    - 'one'
+    - 'both'
+  default: 'both'
 
 
 jobs:
