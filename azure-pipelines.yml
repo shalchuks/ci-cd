@@ -16,16 +16,16 @@ parameters:
   displayName: NuGet Package Configuration
   type: string
   values:
-    - Without Package Creation
-    - Package Creation ans Push
+    - 'Without Package Creation'
+    - 'Package Creation ans Push'
     
 
 - name: Publish
   displayName: Publish Package Configuration
   type: string
   values:
-    - Without Package Creation
-    - Package Creation ans Push
+    - 'Without Package Creation'
+    - 'Package Creation ans Push'
 
 jobs:
 
@@ -36,10 +36,10 @@ jobs:
       vmImage: 'SHALCHUK-NB'
 
 
-  # steps:
+  steps:
 
-  # - ${{ if eq(parameters.NuGet && , 'None of the packages') }}:
-  #     - script: echo Runnig - None of the packages
+  - ${{ if eq(parameters.NuGet, 'Without Package Creation'  && parameters.Publish, 'Without Package Creation') }}:
+      - script: echo Runnig - None of the packages
       
   
 
