@@ -27,4 +27,7 @@ jobs:
   - script: echo "Runnig - None of the packages"
 
   - ${{ if eq(parameters.test, 'None of the packages') }}:
-
+      - task: NuGetToolInstaller@0
+        displayName: 'Use NuGet 5.9.1'
+        inputs:
+          versionSpec: 5.9.1
