@@ -37,7 +37,7 @@ jobs:
   displayName: Pipeline Configuration
   
   steps:
-  - ${{ if or(eq (parameters.NuGet, 'Without Package Creation') eq (parameters.Publish, 'Without Package Creation')) }}:
+  - ${{ if or(eq (parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')) }}:
       - script: echo Runnig - None of the packages
       
   
