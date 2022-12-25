@@ -25,7 +25,7 @@ jobs:
       vmImage: 'SHALCHUK-NB'
   steps:
   - script: echo building $(Build.BuildNumber)
-  - ${{ if eq(parameters.test, 'both') }}:
+  - ${{ if eq(parameters.test, both) }}:
 
       - task: NuGetToolInstaller@0
         displayName: 'Use NuGet 5.9.1'
