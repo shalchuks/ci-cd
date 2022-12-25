@@ -9,12 +9,13 @@ pool:
   vmImage: 'SHALCHUK-NB'
 
 
-variables:
+parameters:
 - name: testEmpty
-  value: ''
-
+  values: 
+    - Pidor
+    - Ujeban
 jobs:
   - job: A
     steps:
     - script: echo testEmpty is blank
-    condition: eq(variables.testEmpty, '')
+    condition: eq(variables.testEmpty, 'Pidor')
