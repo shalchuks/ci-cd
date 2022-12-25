@@ -14,7 +14,7 @@ parameters:
 
 - name: test
   displayName: Pipeline Configuration
-  type: job
+  type: object
   values:
     - None of the packages
     - One of the packages (NuGet or Publish)
