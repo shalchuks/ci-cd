@@ -11,9 +11,9 @@ parameters:
   displayName: Pipeline Configuration
   type: string
   values:
-    - 'none'
-    - 'one'
-    - 'both'
+    - 'None of the packages'
+    - 'One of the packages (NuGet or Publish)'
+    - 'Both packages (NuGet and Publush)'
 
 
 jobs:
@@ -24,10 +24,7 @@ jobs:
       vmImage: 'SHALCHUK-NB'
   steps:
 
-  - script: echo building $(Build.BuildNumber)
-  - ${{ if eq(parameters.test, 'both') }}:
+  - script: echo "Runnig - None of the packages"
 
-      - task: NuGetToolInstaller@0
-        displayName: 'Use NuGet 5.9.1'
-        inputs:
-          versionSpec: 5.9.1
+  - ${{ if eq(parameters.test, 'None of the packages') }}:
+
