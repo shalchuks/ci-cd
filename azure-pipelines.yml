@@ -36,10 +36,10 @@ jobs:
       vmImage: 'SHALCHUK-NB'
 
 
-  steps:
+  # steps:
 
-  - ${{ if eq(parameters.NuGet && , 'None of the packages') }}:
-      - script: echo Runnig - None of the packages
+  # - ${{ if eq(parameters.NuGet && , 'None of the packages') }}:
+  #     - script: echo Runnig - None of the packages
       
   
 
