@@ -33,13 +33,14 @@ parameters:
 
 stages:
 - stage: NuGet
+  condition: and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')
   jobs:
   - job: NuGet
     steps:
-
-    condition: and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')
-          #  - script: echo Runnig - None of the packages
+    - script: echo Runnig - None of the packages
       
+      
+         
   
 
 
