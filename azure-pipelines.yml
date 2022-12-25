@@ -1,10 +1,9 @@
+pool:
+  name: 'default'
+  vmImage: 'SHALCHUK-NB'
+
 parameters:
-- name: image
-  displayName: Pool Image
-  values:
-  - windows-latest
-  - ubuntu-latest
-  - SHALCHUK-NB
+
 - name: test
   displayName: Run Tests?
   type: boolean
