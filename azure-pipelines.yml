@@ -4,7 +4,7 @@ parameters:
   values:
   - windows-latest
   - ubuntu-latest
-  - macOS-latest
+  - SHALCHUK-NB
 - name: test
   displayName: Run Tests?
   type: boolean
@@ -20,4 +20,14 @@ jobs:
   steps:
   - script: echo building $(Build.BuildNumber)
   - ${{ if eq(parameters.test, true) }}:
-    - script: echo "Running all the tests"
+
+      - task: NuGetToolInstaller@0
+        displayName: 'Use NuGet 5.9.1'
+        inputs:
+          versionSpec: 5.9.1
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'restore'
+          restoreSolution: '**/*.sln'
+          feedsToUse: 'select'
