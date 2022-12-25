@@ -28,7 +28,7 @@ variables:
 
 jobs:
   - job: Both
-    condition: eq(parameters.values, 'Both')
+    condition: eq(values.Both, true)
     displayName: Job B
     
     steps:
