@@ -24,10 +24,16 @@ jobs:
       vmImage: 'SHALCHUK-NB'
   steps:
 
-  - script: echo "Runnig - None of the packages"
-
   - ${{ if eq(parameters.test, 'None of the packages') }}:
+
+      - script: echo Runnig - None of the packages
       - task: NuGetToolInstaller@0
         displayName: 'Use NuGet 5.9.1'
         inputs:
           versionSpec: 5.9.1
+      - task: NuGetCommand@2
+        inputs:
+          command: 'restore'
+          restoreSolution: '**/*.sln'
+          feedsToUse: 'select'
+    
