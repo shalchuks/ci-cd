@@ -33,7 +33,7 @@ parameters:
 
 stages:
 - stage: NuGet
-  condition: and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')
+  condition: and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation'))
   jobs:
   - job: NuGet
     steps:
