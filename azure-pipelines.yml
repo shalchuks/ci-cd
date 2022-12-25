@@ -4,6 +4,10 @@ name:
 trigger:
 - master
 
+pool: 
+  name: 'default'
+  vmImage: 'SHALCHUK-NB'
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
@@ -27,18 +31,13 @@ parameters:
     - 'Without Package Creation'
     - 'Package Creation ans Push'
 
-jobs:
+stages:
+- stage: NuGet
+  jobs:
+  - job: NuGet
+    steps:
 
-- job: build
-  displayName: Pipeline Configuration
-  pool: 
-      name: 'default'
-      vmImage: 'SHALCHUK-NB'
-
-
-  steps:
-
-  - ${{ if and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation') }}:
+    - ${{ if and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation') }}:
       - script: echo Runnig - None of the packages
       
   
@@ -47,6 +46,8 @@ jobs:
 
 
 
+# - job: build
+#   displayName: Pipeline Configuration
 
 
 
