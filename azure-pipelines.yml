@@ -17,6 +17,7 @@ parameters:
 
 
 jobs:
+
 - job: build
   displayName: Build and Test
   pool: 
@@ -31,4 +32,4 @@ jobs:
         displayName: 'Use NuGet 5.9.1'
         inputs:
           versionSpec: 5.9.1
-      
+  
