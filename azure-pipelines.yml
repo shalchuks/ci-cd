@@ -13,13 +13,19 @@ variables:
 parameters:
 
 - name: NuGet
-  displayName: Pipeline Configuration
+  displayName: NuGet Package Configuration
   type: string
   values:
-    - None of the packages
-    - One of the packages (NuGet or Publish)
-    - Both packages (NuGet and Publush)
-  
+    - Without Package Creation
+    - Package Creation ans Push
+    
+
+- name: Publish
+  displayName: Publish Package Configuration
+  type: string
+  values:
+    - Without Package Creation
+    - Package Creation ans Push
 
 jobs:
 
@@ -32,7 +38,7 @@ jobs:
 
   steps:
 
-  - ${{ if eq(parameters.NuGet, 'None of the packages') }}:
+  - ${{ if eq(parameters.NuGet && , 'None of the packages') }}:
       - script: echo Runnig - None of the packages
       
   
