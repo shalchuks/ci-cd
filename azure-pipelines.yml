@@ -14,7 +14,7 @@ parameters:
 
 - name: test
   displayName: Pipeline Configuration
-  type: string
+  type: boolean
   values:
     - None of the packages
     - One of the packages (NuGet or Publish)
@@ -35,6 +35,33 @@ jobs:
   - ${{ if eq(parameters.test, 'None of the packages') }}:
       - script: echo Runnig - None of the packages
       
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   - ${{ if eq(parameters.test, 'Both packages (NuGet and Publush)') }}:
 
       - script: echo Runnig - Both packages (NuGet and Publish)
