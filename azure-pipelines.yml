@@ -37,8 +37,8 @@ stages:
   - job: NuGet
     steps:
 
-    - ${{ if and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation') }}:
-      - script: echo Runnig - None of the packages
+    condition: and(eq(parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')
+          #  - script: echo Runnig - None of the packages
       
   
 
