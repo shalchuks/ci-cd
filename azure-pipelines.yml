@@ -1,4 +1,8 @@
+name: 
+  2.3.$(Rev:r)
 
+trigger:
+- master
 
 
 parameters:
@@ -8,7 +12,6 @@ parameters:
   type: boolean
   default: false
 
-trigger: none
 
 jobs:
 - job: build
