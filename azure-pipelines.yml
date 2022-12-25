@@ -1,6 +1,5 @@
-pool:
-  name: 'default'
-  vmImage: 'SHALCHUK-NB'
+
+
 
 parameters:
 
@@ -15,7 +14,8 @@ jobs:
 - job: build
   displayName: Build and Test
   pool: 
-    vmImage: ${{ parameters.image }}
+      name: 'default'
+      vmImage: 'SHALCHUK-NB'
   steps:
   - script: echo building $(Build.BuildNumber)
   - ${{ if eq(parameters.test, true) }}:
