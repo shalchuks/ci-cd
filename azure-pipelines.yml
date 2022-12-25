@@ -12,9 +12,9 @@ variables:
 
 parameters:
 
-- name: test
+- name: NuGet
   displayName: Pipeline Configuration
-  type: boolean
+  type: string
   values:
     - None of the packages
     - One of the packages (NuGet or Publish)
@@ -32,7 +32,7 @@ jobs:
 
   steps:
 
-  - ${{ if eq(parameters.test, 'None of the packages') }}:
+  - ${{ if eq(parameters.NuGet, 'None of the packages') }}:
       - script: echo Runnig - None of the packages
       
   
