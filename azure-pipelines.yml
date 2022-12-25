@@ -16,9 +16,9 @@ parameters:
   displayName: Pipeline Configuration
   type: stepList
   values:
-    - 'None of the packages'
-    - 'One of the packages (NuGet or Publish)'
-    - 'Both packages (NuGet and Publush)'
+    - None of the packages
+    - One of the packages (NuGet or Publish)
+    - Both packages (NuGet and Publush)
   
 
 jobs:
