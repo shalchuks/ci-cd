@@ -38,7 +38,7 @@ jobs:
 
   steps:
 
-  - ${{ if eq(parameters.NuGet, 'Without Package Creation'  && parameters.Publish, 'Without Package Creation') }}:
+  - ${{ if eq(parameters.NuGet, 'Without Package Creation') eq(parameters.Publish, 'Without Package Creation') }}:
       - script: echo Runnig - None of the packages
       
   
