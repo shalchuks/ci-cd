@@ -28,7 +28,7 @@ variables:
 
 jobs:
   - job: Both
-    condition: contains(parameters[pipconf.Both], 'refs/heads/main')
+    condition: eq(parameters.values, 'Both')
     displayName: Job B
     
     steps:
@@ -78,4 +78,4 @@ jobs:
         vstsFeedPackagePublish: 'sharp_docx'
         versionOption: 'custom'
         versionPublish: '$(Build.BuildNumber)'
-      condition: eq(parameters.values, 'Both')
+      
