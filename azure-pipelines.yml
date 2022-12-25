@@ -34,20 +34,15 @@ parameters:
 jobs:
 
 - job: NonePack
-  displayName: Pipeline Configuration
+  displayName: None Pack creating
   
   steps:
   - ${{ if and(eq (parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Without Package Creation')) }}:
 
       - script: echo Runnig - None of the packages
+  
+  - ${{ if and(eq (parameters.NuGet, 'Package Creation ans Push'), eq(parameters.Publish, 'Without Package Creation')) }}:
 
-- job: BothPack
-  displayName: Pipeline Configuration
-  steps:
-
-   - ${{ if and(eq (parameters.NuGet, 'Package Creation ans Push'), eq(parameters.Publish, 'Package Creation ans Push')) }}:
-
-      - script: echo Runnig - Both packages (NuGet and Publish)
       - task: NuGetToolInstaller@0
         displayName: 'Use NuGet 5.9.1'
         inputs:
@@ -63,6 +58,55 @@ jobs:
           solution: '**\*.sln'
           platform: '$(BuildPlatform)'
           configuration: '$(BuildConfiguration)'
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'pack'
+          packagesToPack: '**/*.nuspec'
+          versioningScheme: byEnvVar
+          versionEnvVar: nupkgVersion
+
+      - task: NuGetCommand@2
+        inputs:
+          command: 'push'
+          packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+          nuGetFeedType: 'internal'
+          publishVstsFeed: 'aa207412-6a9c-4fb5-803a-71e843044060/aa71017b-4be0-4ca2-a9ef-7c81a407d5d5'
+
+  
+  - ${{ if and(eq (parameters.NuGet, 'Without Package Creation'), eq(parameters.Publish, 'Package Creation ans Push')) }}:
+
+      - script: echo Create & Push Publish Packege
+      - task: UniversalPackages@0
+        inputs:
+          command: 'publish'
+          publishDirectory: '$(Build.SourcesDirectory)/SharpDocx/bin/Release/netstandard2.0'
+          feedsToUsePublish: 'internal'
+          vstsFeedPublish: 'aa207412-6a9c-4fb5-803a-71e843044060/aa71017b-4be0-4ca2-a9ef-7c81a407d5d5'
+          vstsFeedPackagePublish: 'sharp_docx'
+          versionOption: 'custom'
+          versionPublish: '$(Build.BuildNumber)'
+
+
+
+  - ${{ if and(eq (parameters.NuGet, 'Package Creation ans Push'), eq(parameters.Publish, 'Package Creation ans Push')) }}:
+
+      - task: NuGetToolInstaller@0
+        displayName: 'Use NuGet 5.9.1'
+        inputs:
+            versionSpec: 5.9.1
+
+      - task: NuGetCommand@2
+        inputs:
+            command: 'restore'
+            restoreSolution: '**/*.sln'
+            feedsToUse: 'select'
+
+      - task: VSBuild@1
+        inputs:
+            solution: '**\*.sln'
+            platform: '$(BuildPlatform)'
+            configuration: '$(BuildConfiguration)'
 
       - task: NuGetCommand@2
         inputs:
