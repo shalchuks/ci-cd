@@ -4,30 +4,31 @@ name:
 trigger:
 - master
 
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  nupkgVersion: $(Build.BuildNumber)
 
 parameters:
 
 - name: test
   displayName: Pipeline Configuration
-  type: string
+  type: deploymentList
   values:
     - 'None of the packages'
     - 'One of the packages (NuGet or Publish)'
     - 'Both packages (NuGet and Publush)'
-
+  
 
 jobs:
 
 - job: build
-  displayName: Build and Test
+  displayName: Pipeline Configuration
   pool: 
       name: 'default'
       vmImage: 'SHALCHUK-NB'
-  variables:
-    solution: '**/*.sln'
-    buildPlatform: 'Any CPU'
-    buildConfiguration: 'Release'
-    nupkgVersion: $(Build.BuildNumber)
+
 
   steps:
 
