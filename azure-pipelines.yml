@@ -31,9 +31,4 @@ jobs:
         displayName: 'Use NuGet 5.9.1'
         inputs:
           versionSpec: 5.9.1
-      - task: NuGetCommand@2
-        inputs:
-          command: 'restore'
-          restoreSolution: '**/*.sln'
-          feedsToUse: 'select'
-    
+      
